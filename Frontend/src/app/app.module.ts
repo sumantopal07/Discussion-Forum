@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -59,5 +58,4 @@ import { SignupComponent } from './signup/signup.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-// eslint-disable-next-line import/prefer-default-export
 export class AppModule { }

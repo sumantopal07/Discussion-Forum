@@ -66,6 +66,12 @@ public class Comment {
 	public void setCommentBody(String commentBody) {
 		this.commentBody = commentBody;
 	}
+
+	@Override
+	public String toString() {
+		return "Comment [commentId=" + commentId + ", user=" + user + ", answer=" + answer + ", commentBody="
+				+ commentBody + "]";
+	}
 	
 	
 }

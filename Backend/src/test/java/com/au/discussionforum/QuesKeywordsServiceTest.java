@@ -91,15 +91,10 @@ class QuesKeywordsServiceTest {
 		
 		QuesKeywords quesKeyword3= new QuesKeywords(3,ques3,"bird");
 		
-		@SuppressWarnings("unused")
-		User user4 = new User(user3.getUserId(),user3.getEmail(),user3.getPassword(),user3.getUsername(),user3.getPhoto());
-		@SuppressWarnings("unused")
-		Topic topic4= new Topic(topic3.getTopicId(),topic3.getTopicName());
-		@SuppressWarnings("unused")
-		Question ques4= new Question(ques3.getQuesId(),ques3.getUser(),ques3.getTopic(),ques3.getTitle(),ques3.getBody(),ques3.isMarked());
+		String quesKeywords = "QuesKeywords [quesKeywordsId=" + quesKeyword3.getQuesKeywordsId() + ", question=" + quesKeyword3.getQuestion() + ", keyword=" + quesKeyword3.getKeyword()
+				+ "]";
 		
-		@SuppressWarnings("unused")
-		QuesKeywords quesKeyword4= new QuesKeywords(quesKeyword3.getQuesKeywordsId(),quesKeyword3.getQuestion(),quesKeyword3.getKeyword());
+		assertEquals(quesKeyword3.toString(),quesKeywords);
 
 		List<Question> ques= new ArrayList<>();
 		ques.add(ques1);

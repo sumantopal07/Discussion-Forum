@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./answer-query-page.component.css'],
 })
 export class AnswerQueryPageComponent implements OnInit {
-  constructor(private router : Router) { }
+	
+	 foto: string;
+
+  duname: string;
+  
+  constructor(private router : Router) { 
+    this.foto=JSON.parse(localStorage.getItem('userrrphoto')); 
+    this.duname=JSON.parse(localStorage.getItem('userrr'));
+  }
 
   searchTab() {
     this.router.navigate(['/search']);
@@ -16,7 +23,8 @@ export class AnswerQueryPageComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-
+    localStorage.removeItem('userrr');
+    localStorage.removeItem('userrrphoto');
     this.router.navigate(['']);
   }
 

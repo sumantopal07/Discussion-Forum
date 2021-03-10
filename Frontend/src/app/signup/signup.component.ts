@@ -10,7 +10,6 @@ import { SignupService } from '../signup.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
-// eslint-disable-next-line import/prefer-default-export
 export class SignupComponent implements OnInit {
   signup: FormGroup;
 
@@ -38,7 +37,6 @@ export class SignupComponent implements OnInit {
 
   id: number;
 
-  // eslint-disable-next-line no-useless-constructor
   constructor(private router: Router,
     private signupservice: SignupService,
     private questionService: QuestionService) {
@@ -103,11 +101,11 @@ export class SignupComponent implements OnInit {
     this.err5 = '';
 
     const user = {
-      username: this.username,
-      password: this.password,
-      email: this.email,
-      photo: 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg',
-      topic: this.topic.value,
+      signupUsername: this.username,
+      signupPassword: this.password,
+      signupEmail: this.email,
+      signupPhoto: 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg',
+      signupTopic: this.topic.value,
     };
     this.signupservice.signup(user).subscribe((response) => {
       if (response === 0) this.router.navigate(['']);

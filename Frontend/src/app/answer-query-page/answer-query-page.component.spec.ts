@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnswerQueryPageComponent } from './answer-query-page.component';

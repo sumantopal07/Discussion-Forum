@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AnswerService } from '../answer.service';
@@ -23,7 +22,6 @@ export class AnswerlistComponent implements OnInit {
 
   @Input('markbutton') markbutton:boolean;
 
-  // eslint-disable-next-line no-useless-constructor
   constructor(private answerService: AnswerService,
     private box: MatDialog,
     private commentService: CommentService) {

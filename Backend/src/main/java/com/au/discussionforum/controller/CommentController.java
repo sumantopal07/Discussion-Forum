@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.au.discussionforum.model.Answer;
 import com.au.discussionforum.model.Comment;
-import com.au.discussionforum.model.Question;
 import com.au.discussionforum.model.User;
 import com.au.discussionforum.model.dto.CommentDTO;
 import com.au.discussionforum.service.AnswerService;

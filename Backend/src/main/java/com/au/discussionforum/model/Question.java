@@ -84,6 +84,7 @@ public class Question implements Comparator<Question>{
 		return "Question [quesId=" + quesId + ", user=" + user + ", topic=" + topic + ", title=" + title + ", body="
 				+ body + ", marked=" + marked + "]";
 	}
+	
 	@Override
 	public int compare(Question o1, Question o2) {
 		Integer q1 = o1.getQuesId();
@@ -93,6 +94,5 @@ public class Question implements Comparator<Question>{
 		else
 			return 0;
 	}
-	
 	
 }

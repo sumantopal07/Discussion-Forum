@@ -23,7 +23,6 @@ import com.au.discussionforum.service.AnswerService;
 
 @SpringBootTest
 class AnswerServiceTest {
-
 	@Autowired
 	private AnswerService answerService;
 	
@@ -36,13 +35,28 @@ class AnswerServiceTest {
 		
 		int ques_id=2;
 		
-		User user1= new User(2,"abc@gmail.com","1234","Rupali","img.jpg");
+		User user1= new User();
+		user1.setUserId(2);
+		user1.setEmail("abc@gmail.com");
+		user1.setPassword("1234");
+		user1.setUsername("Rupali");
+		user1.setPhoto("img.jpg");
+		
 		User user2= new User(1,"abc@gmail.com","1234","Aman","img.jpg");
 		
-		Topic topic1= new Topic(3,"games");
+		Topic topic1= new Topic();
+		topic1.setTopicId(3);
+		topic1.setTopicName("games");
 		Topic topic2= new Topic(4,"art");
 		
-		Question ques1= new Question(1,user1,topic1,"national game","Which is our national game?",false);
+		Question ques1= new Question();
+		ques1.setQuesId(1);
+		ques1.setUser(user1);
+		ques1.setTopic(topic1);
+		ques1.setTitle("natinal game");
+		ques1.setBody("Which is our national game?");
+		ques1.setMarked(false);
+		
 		Question ques2= new Question(2,user2,topic2,"color","Which is the color of peace?",false);
 		
 		List<Answer> answer= new ArrayList<Answer>();
@@ -62,10 +76,17 @@ class AnswerServiceTest {
 		Topic topic= new Topic(3,"games");
 		Question ques= new Question(1,user,topic,"national game","Which is our national game?",false);
 		
-		Answer ans= new Answer(1,user,ques,"hockey is our national game",true);
+		Answer ans= new Answer();
+		ans.setAnsId(1);
+		ans.setUser(user);
+		ans.setQuestion(ques);
+		ans.setAnswerBody("hockey is our national game");
+		ans.setCorrect(true);
 		
 		when(answerRepository.findByAnsId(ans_id)).thenReturn(ans);
 		assertEquals(ans,answerService.getAnswerByAnswerId(ans_id));
+		
+		
 	}
 	
 	@Test

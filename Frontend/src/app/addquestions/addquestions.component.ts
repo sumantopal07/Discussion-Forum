@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';

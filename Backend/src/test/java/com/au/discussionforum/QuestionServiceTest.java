@@ -65,14 +65,28 @@ class QuestionServiceTest {
 		
 		List<Question> q_List= new ArrayList<Question>();
 		
+		User user1= new User();
+		user1.setUserId(1);
+		user1.setEmail("abc@gmail.com");
+		user1.setPassword("1234");
+		user1.setUsername("Rupali");
+		user1.setPhoto("img.jpg");
 		
-		User user1= new User(1,"abc@gmail.com","1234","Rupali","img.jpg");
 		User user2= new User(2,"mnp@gmail.com","900","Sakshi","img.jpg");
 		User user3= new User(3,"abc@gmail.com","1234","Aman","img.jpg");
 		Topic topic1= new Topic(1,"country");
-		Question ques1= new Question(1,user1,topic1,"national bird","Which is our national bird?",false);
+		Question ques1= new Question();
+		ques1.setQuesId(1);
+		ques1.setUser(user1);
+		ques1.setTopic(topic1);
+		ques1.setTitle("national bird");
+		ques1.setBody("Which is our national bird?");
+		ques1.setMarked(false);
 		
-		Topic topic2= new Topic(2,"art");
+		Topic topic2= new Topic();
+		topic2.setTopicId(2);
+		topic2.setTopicName("art");
+		
 		Question ques2= new Question(2,user2,topic2,"colr","Which is color of peace?",false);
 		
 		Topic topic3= new Topic(3,"games");
@@ -93,5 +107,41 @@ class QuestionServiceTest {
 		System.out.println(questionService.getSortedQuestionList(q_List));
 		assertEquals(q_sorted_List,questionService.getSortedQuestionList(q_List));
 		
+		String ques4 = "Question [quesId=" + ques3.getQuesId() + ", user=" + ques3.getUser() + ", topic=" + ques3.getTopic() + ", title=" + ques3.getTitle() + ", body="
+				+ ques3.getBody() + ", marked=" + ques3.isMarked() + "]";
+		
+		assertEquals(ques4,ques3.toString());
+		
+	}
+	
+	@Test
+	void getQuestionByIdTest() {
+		User user1= new User(1,"mnp@gmail.com","900","Sakshi","img.jpg");
+		Topic topic1= new Topic(1,"games");
+		
+		int ques_id=3;
+		
+		Question ques3= new Question(3,user1,topic1,"football","When was first match of football held? ",false);
+		when(questionRepository.findByQuesId(ques_id)).thenReturn(ques3);
+		
+		assertEquals(ques3.toString(),questionService.getQuestionById(ques_id).toString());
+	}
+	
+	@Test
+	void getQuestionByTopicTest() {
+		User user1= new User(1,"mnp@gmail.com","900","Sakshi","img.jpg");
+		Topic topic1= new Topic(1,"art");
+		Question ques1= new Question(1,user1,topic1,"colr","Which is color of peace?",false);
+		Question ques2= new Question(2,user1,topic1,"football","When was first match of football held? ",true);
+		
+		int t_id=1;
+		
+		List<Question> q= new ArrayList<>();
+		q.add(ques1);
+		q.add(ques2);
+		
+		when(questionRepository.findByTopicTopicId(t_id)).thenReturn(q);
+		
+		assertEquals(1,questionService.getQuestionByTopic(t_id).size());
 	}
 }

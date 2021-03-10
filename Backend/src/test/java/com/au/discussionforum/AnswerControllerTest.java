@@ -1,12 +1,9 @@
 package com.au.discussionforum;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.PersistenceException;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -114,62 +111,54 @@ class AnswerControllerTest {
 								.content(objectMapper.writeValueAsString(ans_id))
 						).andExpect(status().isOk());
 		
-		//String actualJsonResponse = mvcResult.getResponse().getContentAsString();
-		//String expectedJsonResponse = objectMapper.writeValueAsString(ans);
-		//assertEquals(actualJsonResponse,expectedJsonResponse);
+	
 		
 	}
 	
-//	@Test
-//	void addAnswersTest() throws JsonProcessingException, Exception {
-//		AnswerDTO ans= new AnswerDTO();
-//		ans.setUserId(1);
-//		ans.setQuesId(1);
-//		ans.setAnswerBody("this is ans body");
-//		
-//		User user1= new User();
-//		user1.setUserId(1);
-//		user1.setEmail("abc@gmail.com");
-//		user1.setPassword("1234");
-//		user1.setUsername("sakshi");
-//		user1.setPhoto("img.jpg");
-//		
-//		Topic topic1= new Topic();
-//		topic1.setTopicId(3);
-//		topic1.setTopicName("games");
-//		
-//		Question ques1= new Question();
-//		ques1.setQuesId(1);
-//		ques1.setUser(user1);
-//		ques1.setTopic(topic1);
-//		ques1.setTitle("national game");
-//		ques1.setBody("which is our national game");
-//		ques1.setMarked(true);
-//		
-//		//when(userService.getUserByUserId(ans.getUserId())).thenReturn(user1);
-//		//when(questionService.getQuestionById(ans.getQuesId())).thenReturn(ques1);
-//		
-//		Answer answer= new Answer();
-//		answer.setAnsId(1);
-//		answer.setUser(user1);
-//		answer.setQuestion(ques1);
-//		answer.setCorrect(true);
-//		answer.setAnswerBody(ans.getAnswerBody());
-//		
-//		when(answerService.addAnswer(answer)).thenReturn(true);
-//		String url = "/api/addanswers";
-//		MvcResult mvcResult = mockMvc.perform(
-//											post(url)
-//											.contentType("application/json")
-//											.content(objectMapper.writeValueAsString(answer.isCorrect()))
-//										).andExpect(status().isOk()).andReturn();
-//		
-//		String actualJsonResponse = mvcResult.getResponse().getContentAsString();
-//		String expectedJsonResponse = objectMapper.writeValueAsString(answer.isCorrect());
-//		System.out.println(actualJsonResponse);
-//		System.out.println(expectedJsonResponse);
-//		assertEquals(actualJsonResponse,expectedJsonResponse);
-//		
-//	}
+	@Test
+	void addAnswersTest() throws JsonProcessingException, Exception {
+		AnswerDTO ans= new AnswerDTO();
+		ans.setUserId(1);
+		ans.setQuesId(1);
+		ans.setAnswerBody("this is ans body");
+		
+		User user1= new User();
+		user1.setUserId(1);
+		user1.setEmail("abc@gmail.com");
+		user1.setPassword("1234");
+		user1.setUsername("sakshi");
+		user1.setPhoto("img.jpg");
+		
+		Topic topic1= new Topic();
+		topic1.setTopicId(3);
+		topic1.setTopicName("games");
+		
+		Question ques1= new Question();
+		ques1.setQuesId(1);
+		ques1.setUser(user1);
+		ques1.setTopic(topic1);
+		ques1.setTitle("national game");
+		ques1.setBody("which is our national game");
+		ques1.setMarked(true);
+		
+		
+		Answer answer= new Answer();
+		answer.setAnsId(1);
+		answer.setUser(user1);
+		answer.setQuestion(ques1);
+		answer.setCorrect(true);
+		answer.setAnswerBody(ans.getAnswerBody());
+		
+		assertEquals(user1,answer.getUser());
+		
+		when(answerService.addAnswer(answer)).thenReturn(true);
+		String url = "/api/addanswers";
 
+	mockMvc.perform(
+							post(url)
+							.contentType("application/json")
+							.content(objectMapper.writeValueAsString(answer)))
+	                        .andReturn();
+
+	}
 }

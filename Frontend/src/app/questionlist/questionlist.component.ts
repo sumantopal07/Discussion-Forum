@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { QuestionService } from '../question.service';

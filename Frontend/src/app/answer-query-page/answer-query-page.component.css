@@ -38,3 +38,17 @@
     color: var(--ligt);
     cursor: pointer;
   }
+  
+  .uname{
+    margin-left: 85%;
+    color: var(--ligt);
+    position: absolute;
+    margin-top: -5%;
+  }
+  
+  .img{
+    position: absolute;
+    margin-left: 83.8%;
+    border-radius: 50%;
+    margin-top: -14%;
+  }

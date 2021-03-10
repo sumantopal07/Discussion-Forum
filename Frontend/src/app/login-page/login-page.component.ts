@@ -9,7 +9,6 @@ import { QuestionService } from '../question.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
 })
-// eslint-disable-next-line import/prefer-default-export
 export class LoginPageComponent implements OnInit {
   username : string;
 
@@ -38,6 +37,8 @@ export class LoginPageComponent implements OnInit {
       } else {
         this.id = response.userId;
         localStorage.setItem('token', JSON.stringify(this.id));
+        localStorage.setItem('userrr', JSON.stringify(response.username));
+        localStorage.setItem('userrrphoto', JSON.stringify(response.photo));
         this.questionService.uid = this.id;
         this.router.navigate(['/search']);
       }
