@@ -2,6 +2,7 @@ package com.au.discussionforum.controller;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +35,7 @@ public class UserController {
     	if(user==null) {
     		return null;
     	}else {
-    		if(user.getPassword().equals(userDTO.getPassword())) {
+    		if(BCrypt.checkpw(userDTO.getPassword(), user.getPassword())) {
     			return user;
     		}
     	}
@@ -46,7 +47,9 @@ public class UserController {
 	public int addUser(@RequestBody UserSignupDTO userSignupDTO) {
 		User user = new User();
 		user.setEmail(userSignupDTO.getSignupEmail());
-		user.setPassword(userSignupDTO.getSignupPassword());
+		
+		String password = BCrypt.hashpw(userSignupDTO.getSignupPassword(), BCrypt.gensalt());
+		user.setPassword(password);
 		user.setPhoto(userSignupDTO.getSignupPhoto());
 		user.setUsername(userSignupDTO.getSignupUsername());
 		
@@ -60,7 +63,7 @@ public class UserController {
 		
 		user = userService.addUser(user);
 		
-		List<String> topics = userSignupDTO.getTopic();
+		List<String> topics = userSignupDTO.getSignupTopic();
 		
 		for(String topic : topics) {
 			UserTopic userTopic = new UserTopic();

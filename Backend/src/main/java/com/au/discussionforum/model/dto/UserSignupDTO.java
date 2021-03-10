@@ -3,41 +3,44 @@ package com.au.discussionforum.model.dto;
 import java.util.List;
 
 public class UserSignupDTO {
-	private String email;
-	private String password;
-	private String username;
-	private String photo;
-	private List<String> topic;
+	private String signupEmail;
+	private String signupPassword;
+	private String signupUsername;
+	private String signupPhoto;
+	private List<String> signupTopic;
 	
 	public String getSignupEmail() {
-		return email;
+		return signupEmail;
 	}
-	public void setSignupEmail(String email) {
-		this.email = email;
+	public void setSignupEmail(String signupEmail) {
+		this.signupEmail = signupEmail;
 	}
 	public String getSignupPassword() {
-		return password;
+		return signupPassword;
 	}
-	public void setSignupPassword(String password) {
-		this.password = password;
+	public void setSignupPassword(String signupPassword) {
+		this.signupPassword = signupPassword;
 	}
 	public String getSignupUsername() {
-		return username;
+		return signupUsername;
 	}
-	public void setSignupUsername(String username) {
-		this.username = username;
+	public void setSignupUsername(String signupUsername) {
+		this.signupUsername = signupUsername;
 	}
 	public String getSignupPhoto() {
-		return photo;
+		return signupPhoto;
 	}
-	public void setSignupPhoto(String photo) {
-		this.photo = photo;
+	public void setSignupPhoto(String signupPhoto) {
+		this.signupPhoto = signupPhoto;
 	}
-	public List<String> getTopic() {
-		return topic;
+	public List<String> getSignupTopic() {
+		return signupTopic;
 	}
-	public void setTopic(List<String> topic) {
-		this.topic = topic;
+	public void setSignupTopic(List<String> signupTopic) {
+		this.signupTopic = signupTopic;
 	}
+
+	
+	
 	
 }
