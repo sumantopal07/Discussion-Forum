@@ -13,9 +13,9 @@ export class SearchQueryPageComponent implements OnInit {
 
   temp=[];
   
-  foto: String;
+  foto: string;
 
-  duname: String;
+  duname: string;
 
   ftest: boolean;
 
@@ -28,18 +28,18 @@ export class SearchQueryPageComponent implements OnInit {
     this.duname=JSON.parse(localStorage.getItem('userrr'));
   }
 
-  answerTab() {
+  answerTab() : void{
     this.router.navigate(['/answer']);
   }
 
-  logout() {
+  logout() : void{
     localStorage.removeItem('token');
     localStorage.removeItem('userrr');
     localStorage.removeItem('userrrphoto');
     this.router.navigate(['']);
   }
 
-  quesSearch() {
+  quesSearch() : void{
     this.temp = [];
     this.questionService.oldkey = this.Qkeywords;
     this.questionService.Searching(this.Qkeywords).subscribe((data) => {
@@ -57,5 +57,6 @@ export class SearchQueryPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.Qkeywords = '';
   }
 }

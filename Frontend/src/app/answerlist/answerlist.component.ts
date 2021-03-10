@@ -33,7 +33,7 @@ export class AnswerlistComponent implements OnInit {
     this.getAnswer();
   }
 
-  getAnswer() {
+  getAnswer() : void{
     this.answerService.getAnswer(this.quesId).subscribe((data) => {
       const tempArray: any = [];
       for (let i = 0; i < data.length; i += 1) {
@@ -57,7 +57,7 @@ export class AnswerlistComponent implements OnInit {
     });
   }
 
-  upvote(ansId) {
+  upvote(ansId) : void{
     this.answerService.markCorrect(ansId).subscribe(() => {
       this.mark = false;
       this.ansList = [];

@@ -17,11 +17,11 @@ export class AnswerQueryPageComponent implements OnInit {
     this.duname=JSON.parse(localStorage.getItem('userrr'));
   }
 
-  searchTab() {
+  searchTab() : void{
     this.router.navigate(['/search']);
   }
 
-  logout() {
+  logout() : void{
     localStorage.removeItem('token');
     localStorage.removeItem('userrr');
     localStorage.removeItem('userrrphoto');
@@ -29,5 +29,7 @@ export class AnswerQueryPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.foto=JSON.parse(localStorage.getItem('userrrphoto')); 
+    this.duname=JSON.parse(localStorage.getItem('userrr'));
   }
 }

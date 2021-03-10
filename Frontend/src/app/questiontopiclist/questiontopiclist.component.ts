@@ -39,11 +39,11 @@ export class QuestiontopiclistComponent implements OnInit {
     });
   }
 
-  showans= (i) => {
+  showans= (i : number) : void => {
     this.showVar[i] = !this.showVar[i];
   }
 
-  addAns(qID, i) {
+  addAns(qID, i:  number) : void {
     this.answerService.quesAnsId = qID;
     this.box.open(AddanswersComponent);
     this.showVar[i] = false;

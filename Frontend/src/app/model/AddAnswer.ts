@@ -1,7 +1,7 @@
 export class AddAnswer {
     answerBody:string;
 
-    userId: any;
+    userId: number;
 
-    quesId: any;
+    quesId: number;
 }

@@ -29,11 +29,11 @@ export class AddcommentsComponent implements OnInit {
     });
   }
 
-  get comBody() {
+  get comBody() : FormControl{
     return this.lecform.get('comBody') as FormControl;
   }
 
-  addCom() {
+  addCom() : void{
     if (!this.comBody.value) {
       this.err = 'This field cannot be empty';
       return;

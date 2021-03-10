@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
     this.id = -1;
   }
 
-  loggedIn() {
+  loggedIn() : void{
     this.user = { username: this.username, password: this.password };
     this.loginservice.login(this.user).subscribe((response) => {
       if (!response) {
@@ -45,10 +45,11 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  signUp= () => {
+  signUp= () : void => {
     this.router.navigate(['/signup']);
   }
 
   ngOnInit(): void {
+    this.err="";
   }
 }

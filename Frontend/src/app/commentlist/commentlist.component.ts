@@ -20,7 +20,7 @@ export class CommentlistComponent implements OnInit {
     this.getComment();
   }
 
-  getComment() {
+  getComment() : void{
     this.commentService.getComment(this.ansId).subscribe((data) => {
       for (let i = 0; i < data.length; i += 1) {
         this.commentList.push({

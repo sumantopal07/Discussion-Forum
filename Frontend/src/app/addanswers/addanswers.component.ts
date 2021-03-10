@@ -28,11 +28,11 @@ export class AddanswersComponent implements OnInit {
     });
   }
 
-  get ansBody() {
+  get ansBody() : FormControl {
     return this.lecform.get('ansBody') as FormControl;
   }
 
-  addAns() {
+  addAns() : void {
     if (!this.ansBody.value) {
       this.err = 'This field cannot be empty';
       return;

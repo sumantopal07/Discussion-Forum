@@ -60,11 +60,11 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  get topic() {
+  get topic() : FormControl {
     return this.signup.get('topic') as FormControl;
   }
 
-  loggedIn() {
+  loggedIn() : void{
     if (!this.username) {
       this.err1 = 'Username cannot be empty';
       return;

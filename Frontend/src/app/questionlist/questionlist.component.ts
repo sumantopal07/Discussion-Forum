@@ -52,20 +52,20 @@ export class QuestionlistComponent implements OnInit {
     });
   }
 
-  ngOnChanges() {
+  ngOnChanges() : void{
     this.seachQueList = this.temp;
     this.toogleques = false;
   }
 
-  addQues() {
+  addQues() : void{
     this.box.open(AddquestionsComponent);
   }
 
-  showans= (i) => {
+  showans= (i:number) : void => {
     this.showVar[i] = !this.showVar[i];
   }
 
-  showsearchQues() {
+  showsearchQues() : void {
     this.toogleques = true;
   }
 }

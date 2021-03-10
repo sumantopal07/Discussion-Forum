@@ -39,23 +39,23 @@ export class AddquestionsComponent implements OnInit {
     });
   }
 
-  get topic() {
+  get topic() : FormControl{
     return this.quesObj.get('topic') as FormControl;
   }
 
-  get quesTitle() {
+  get quesTitle() : FormControl{
     return this.quesObj.get('quesTitle') as FormControl;
   }
 
-  get quesDesc() {
+  get quesDesc() : FormControl{
     return this.quesObj.get('quesDesc') as FormControl;
   }
 
-  get Keywords() {
+  get Keywords() : FormControl{
     return this.quesObj.get('Keywords') as FormControl;
   }
 
-  addQues() {
+  addQues() : void{
     const quesObject = {
       userId: this.questionService.uid,
 
@@ -87,11 +87,12 @@ export class AddquestionsComponent implements OnInit {
       return;
     } this.err4 = '';
 
-    this.snackBar.open('Adding. Add Question box will close automatically.', '', {
-      duration: 5000,
+    this.snackBar.open('Question Added.', '', {
+      duration: 3000,
     });
     this.questionService.postQuestion(quesObject).subscribe(() => {
-      this.dialogRef.close();
+      this.err1 = "";
     });
+    this.dialogRef.close();
   }
 }
