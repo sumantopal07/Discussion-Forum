@@ -1,0 +1,108 @@
+.error{
+    color:var(--dark);
+    font-size: 15px;
+  }
+  
+    .login-box {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    width: 30%;
+    height: 80%;
+    padding: 3%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    background:var(--ligt);
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-family: sans-serif;
+    font-size: larger;
+  }
+  
+  .login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color:var(--dark);
+    text-align: center;
+  }
+  
+  .login-box .user-box{
+    position: relative;
+  }
+  
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--dark);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid var(--dark);
+    outline: none;
+    background: transparent;
+  }
+  .login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--dark);
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: var(--dark);
+    font-size: 12px;
+  }
+  
+  .login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--dark);
+    background-color: var(--ligt);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 10px;
+    letter-spacing: 4px;
+    border-radius: 5px;
+  }
+  
+  .login-box form a:hover {
+    background: var(--dark);
+    color: var(--ligt);
+    cursor: pointer;
+  }
+  .c{
+    color: var(--ligt);
+     background-color: var(--dark);
+     width: 60%; 
+    font-size: 18px;
+  }
+  .c option :hover{
+    color:var(--ligt);
+    background-color: var(--dark);
+  }
+  
+  .err{
+    color: red;
+    font-size: small;
+    position: absolute;
+    margin-top: -10%;
+    margin-left: -15%;
+    text-align: center;
+  }
+  
+  
+  
+  
+  
+  

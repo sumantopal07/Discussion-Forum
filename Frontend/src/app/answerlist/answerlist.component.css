@@ -1,0 +1,53 @@
+
+  .ba {
+    position: relative;
+    display: inline-block;
+    padding: 10px 10px;
+    color: var(--dark);
+    background-color: var(--ligt);
+    font-size: 12px;
+    margin-top: 1%;
+    border-radius: 5px;
+  }
+
+  
+.b {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--dark);
+  background-color: var(--ligt);
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 10px;
+  letter-spacing: 4px;
+  border-radius: 5px;
+}
+.b:hover {
+  background: var(--dark);
+  color: var(--ligt);
+  cursor: pointer;
+}
+
+.button {
+  border-radius: 4px;
+  background-color: var(--ligt);
+  border: none;
+  color: var(--dark);
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  width: 135px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button:hover{
+  background-color: var(--dark);
+  color: var(--ligt);
+}
+

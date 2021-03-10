@@ -1,0 +1,12 @@
+<div class="navbar">
+    <button class="ba">Search</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="b" (click)="answerTab()">Answer</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="b" (click)="logout()">LogOut</button>
+</div>
+<br>
+ 
+<input style="margin-top: 5%; margin-left: 40%; width: 25%; " class="s" name="search" placeholder="Enter comma separated keywords here" [(ngModel)]="Qkeywords" [ngModelOptions]="{standalone: true}"><br>
+<button class="b" style="position: absolute; margin-top: -5%; margin-left: 70%;" (click)="quesSearch()">Go</button>
+
+<app-questionlist [temp]='temp' [ftest]='ftest' [qlen1]='qlen1' ></app-questionlist>
+<br><br><br>

@@ -1,0 +1,35 @@
+<div class="login-box">
+    <h3><em>ASK QUESTION</em></h3>
+    <form [formGroup]='quesObj'>
+        <label style="color: var(--dark);" for="input">Choose your topic:   </label> 
+<select id="demo" formControlName="topic" class="c">
+<option value="badminton">badminton</option>
+<option value="algorithm">algorithm</option>
+<option value="technology">technology</option>
+<option value="framework">framework</option>
+<option value="psychiatry">psychiatry</option>
+<option value="chess">chess</option>
+</select>
+<span class='err' style="margin-left: -30%; margin-top: -3.5%;">{{err1}}</span>
+<br><br><br>
+      <div class="user-box">
+        <input style="background-color: var(--dark);  width: 92%; margin-top: 2%; color: var(--ligt);" formControlName="Keywords">
+        <label>Keywords (comma separated) <br><br></label>
+      </div>
+      <span class='err' style="margin-left: -10%; margin-top: -14%;">{{err2}}</span>
+      <div class="user-box">
+        <label>Title:</label>
+        <br><br>
+        <textarea rows="3" cols="60" formControlName="quesTitle" class="tx"></textarea>
+      </div>
+      <span class='err' style="margin-left: -10%; margin-top: -16%;">{{err3}}</span>
+      <div class="user-box">
+        <label>Description:</label>
+        <br><br>
+        <textarea rows="5" cols="60" formControlName="quesDesc" class="tx"></textarea>
+      </div> 
+      <span class='err' style="margin-left: -10%; margin-top: -22%;">{{err4}}</span>
+      <br>
+      <button mat-stroked-button class="button"(click)='addQues()'>Add</button>
+    </form>
+  </div>

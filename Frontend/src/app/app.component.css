@@ -1,0 +1,12 @@
+.header {
+  padding: 10px;
+  text-align: center;
+  color:var(--ligt);
+  font-family: sans-serif;
+  font-size: 40px;
+}
+
+.i{
+  margin-top: -12%;
+  margin-left: 80%;
+}

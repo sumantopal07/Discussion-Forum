@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; background-color:var(--dark);}
+
+:root{
+    --dark: #2b7a78;
+    --ligt:#DADED4;
+}

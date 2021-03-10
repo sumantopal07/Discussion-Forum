@@ -1,0 +1,40 @@
+.navbar{
+    margin-left: 65%;
+    margin-top: -3%;
+}
+.b {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--dark);
+    background-color: var(--ligt);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 10px;
+    letter-spacing: 4px;
+    border-radius: 5px;
+  }
+  .ba {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--ligt);
+    background-color: var(--dark);
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 10px;
+    letter-spacing: 4px;
+    border-radius: 5px;
+  }
+  
+  .b:hover {
+    background: var(--dark);
+    color: var(--ligt);
+    cursor: pointer;
+  }

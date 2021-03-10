@@ -1,0 +1,13 @@
+<div class="login-box">
+  <h3><em>Add answer</em></h3><br><br>
+  <form [formGroup]='lecform'>
+    <div class="user-box">
+      <label>Enter answer body:</label>
+      <br><br>
+      <textarea rows="10" cols="40" formControlName="ansBody" class="tx"></textarea>
+    </div>
+    <br><br>
+    <span class='err'>{{err}}</span>
+    <button (click)="addAns()" class="button">Add</button>
+  </form>
+</div>

@@ -1,0 +1,21 @@
+<div *ngIf="len">
+    <div *ngFor="let comment of commentList">
+    <mat-card class="example-card" style="padding: 2%; background-color: var(--ligt); color:var(--dark);">
+        <mat-card-header>
+            <div mat-card-avatar style="background-image: url({{comment.cphoto}});
+            background-size: cover;"></div>
+            <mat-card-title><em>{{comment.user}}</em> </mat-card-title>
+        </mat-card-header><br>
+        <mat-card-content>
+            {{comment.body}}
+        </mat-card-content>
+
+</mat-card><br>
+    </div>
+    </div>
+    
+    <div *ngIf="!len">
+        <span>
+        No comments!
+        </span>
+    </div>    

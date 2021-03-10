@@ -1,0 +1,13 @@
+<div class="login-box">
+    <h3><em>Add Comment</em></h3><br><br>
+    <form [formGroup]='lecform'>
+      <div class="user-box">
+        <label>Enter Comment</label>
+        <br><br>
+        <textarea rows="10" cols="40" formControlName="comBody" class="tx"></textarea>
+        <span class='err'>{{err}}</span>
+      </div>
+      <br><br>
+      <button class="button" (click)=addCom() >Add</button>
+    </form>
+  </div>

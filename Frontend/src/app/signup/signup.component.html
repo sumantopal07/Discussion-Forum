@@ -1,0 +1,44 @@
+<div class="backg">
+    <div class="login-box">
+        <h2><em>SIGNUP</em></h2>
+        <form [formGroup]='signup'>
+            <div class="user-box">
+                <input type="text" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+                <label style="font-size:small;">Username<br></label>
+            </div>
+            <span class='err'>{{err1}}</span>         
+            <div class="user-box">
+                <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                <label style="font-size:small;">Password<br></label>
+            </div>
+            <span class='err'>{{err2}}</span>
+            <div class="user-box">
+                <input type="password" [(ngModel)]="passwordAgain" [ngModelOptions]="{standalone: true}">
+                <label style="font-size:small;">Confirm password<br></label>
+            </div>
+            <span class='err'>{{err3}}</span>
+            <div class="user-box">
+                <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                <label style="font-size:small;">Email<br></label>
+            </div>
+            <span class='err'>{{err4}}</span>
+            <div class="user-box">
+                <label style="font-size:small;">Choose your topic: <br></label><br><br>
+                <select class="c" style="margin-top: -15%; margin-left: 25%;" formControlName="topic" multiple="multiple" id="myMulti">
+                    <option  value="badminton">badminton</option>
+                    <option value="algorithm">algorithm</option>
+                    <option value="technology">technology</option>
+                    <option value="framework">framework</option>
+                    <option value="psychiatry">psychiatry</option>
+                    <option value="chess">chess</option>
+                </select>
+            </div>
+            <span style="margin-top: 1%;" class='err'>{{err5}}</span>
+            <br>
+            <a (click)='loggedIn()'>
+                Submit
+            </a>
+            <span class="err" style="margin-top: -90%; margin-left: -30%;">{{err}}</span>
+        </form>
+    </div>
+</div>
