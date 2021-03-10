@@ -1,5 +1,5 @@
-    <div *ngIf="len">
-        <div *ngFor="let answer of ansList; index as i">
+<div *ngIf="len">
+    <div *ngFor="let answer of ansList; index as i">
         <mat-card class="example-card" style="padding: 3%; background-color: var(--dark); color:var(--ligt);">
             <mat-card-header>
                 <div mat-card-avatar style="background-image: url({{answer.aphoto}});
@@ -18,17 +18,17 @@
                 </div>
                 <div *ngIf="showVar[i]">
                     <p>
-                    <app-commentlist ansId={{answer.ansId}}></app-commentlist>
+                        <app-commentlist ansId={{answer.ansId}}></app-commentlist>
                     </p>
                 </div>
             </mat-card-content>
-    
-</mat-card><br>
-        </div>
-        </div>
-        
-        <div *ngIf="!len">
-            <span>
-            No one has answered this yet!
-            </span>
-        </div>    
+
+        </mat-card><br>
+    </div>
+</div>
+
+<div *ngIf="!len">
+    <span>
+        No one has answered this yet!
+    </span>
+</div>

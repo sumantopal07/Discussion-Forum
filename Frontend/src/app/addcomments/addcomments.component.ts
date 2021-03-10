@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -13,12 +14,15 @@ import { CommentlistComponent } from '../commentlist/commentlist.component';
 })
 export class AddcommentsComponent implements OnInit {
   lecform: FormGroup;
+
   err: string;
 
-  constructor(private dialogRef: MatDialogRef<CommentlistComponent>, private answerService: AnswerService,
-    private questionService: QuestionService, private commentService: CommentService) {
-      this.err='';
-     }
+  constructor(private dialogRef: MatDialogRef<CommentlistComponent>,
+    private answerService: AnswerService,
+    private questionService: QuestionService,
+    private commentService: CommentService) {
+    this.err = '';
+  }
 
   ngOnInit(): void {
     this.lecform = new FormGroup({
@@ -31,8 +35,8 @@ export class AddcommentsComponent implements OnInit {
   }
 
   addCom() {
-    if(!this.comBody.value){
-      this.err="This field cannot be empty";
+    if (!this.comBody.value) {
+      this.err = 'This field cannot be empty';
       return;
     }
     const comObject = {

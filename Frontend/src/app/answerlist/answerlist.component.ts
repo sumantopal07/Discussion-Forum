@@ -1,15 +1,8 @@
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable no-undef */
-/* eslint-disable no-console */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-empty-function */
 import { Component, OnInit, Input } from '@angular/core';
-import { Answer } from '../model/answer';
-import { AnswerService } from '../answer.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AddcommentsComponent} from '../addcomments/addcomments.component'
+import { AnswerService } from '../answer.service';
+import { AddcommentsComponent } from '../addcomments/addcomments.component';
 import { CommentService } from '../comment.service';
 
 @Component({
@@ -31,7 +24,9 @@ export class AnswerlistComponent implements OnInit {
   @Input('markbutton') markbutton:boolean;
 
   // eslint-disable-next-line no-useless-constructor
-  constructor(private answerService: AnswerService, private box: MatDialog, private commentService: CommentService) {
+  constructor(private answerService: AnswerService,
+    private box: MatDialog,
+    private commentService: CommentService) {
     this.markbutton = false;
   }
 
@@ -65,7 +60,6 @@ export class AnswerlistComponent implements OnInit {
   }
 
   upvote(ansId) {
-    console.log(ansId);
     this.answerService.markCorrect(ansId).subscribe(() => {
       this.mark = false;
       this.ansList = [];
@@ -73,13 +67,13 @@ export class AnswerlistComponent implements OnInit {
     });
   }
 
-  addComment(ans_Id, i){
-    this.commentService.temp = ans_Id;
+  addComment(ansId, i) {
+    this.commentService.temp = ansId;
     this.box.open(AddcommentsComponent);
     this.showVar[i] = false;
   }
 
   showcomment= (i) => {
     this.showVar[i] = !this.showVar[i];
-  } 
+  }
 }

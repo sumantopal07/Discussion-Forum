@@ -45,7 +45,7 @@ export class QuestiontopiclistComponent implements OnInit {
   }
 
   addAns(qID, i) {
-    this.answerService.quesId_AddAns = qID;
+    this.answerService.quesAnsId = qID;
     this.box.open(AddanswersComponent);
     this.showVar[i] = false;
   }

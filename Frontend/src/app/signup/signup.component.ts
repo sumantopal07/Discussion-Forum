@@ -1,8 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-console */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-unused-vars */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -76,37 +71,37 @@ export class SignupComponent implements OnInit {
       this.err1 = 'Username cannot be empty';
       return;
     }
-    else{
-      this.err1='';
-    }
+
+    this.err1 = '';
+
     if (!this.password) {
       this.err2 = 'Password cannot be empty';
       return;
     }
-    else{
-      this.err2='';
-    }
+
+    this.err2 = '';
+
     if (this.password !== this.passwordAgain) {
       this.err3 = 'Passwords do not match';
       return;
     }
-    else{
-      this.err3='';
-    }
+
+    this.err3 = '';
+
     if (!EmailValidator.validate(this.email)) {
       this.err4 = 'Enter a valid email id';
       return;
     }
-    else{
-      this.err4='';
-    }
+
+    this.err4 = '';
+
     if (!this.topic.value) {
       this.err5 = 'Topic cannot be empty';
       return;
     }
-    else{
-      this.err5='';
-    }
+
+    this.err5 = '';
+
     const user = {
       username: this.username,
       password: this.password,
@@ -115,7 +110,6 @@ export class SignupComponent implements OnInit {
       topic: this.topic.value,
     };
     this.signupservice.signup(user).subscribe((response) => {
-      console.log(response);
       if (response === 0) this.router.navigate(['']);
       if (response === 1) this.err = 'username not available';
       if (response === 2) this.err = 'Email already used';

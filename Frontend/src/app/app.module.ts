@@ -8,6 +8,9 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -18,12 +21,9 @@ import { AnswerlistComponent } from './answerlist/answerlist.component';
 import { QuestiontopiclistComponent } from './questiontopiclist/questiontopiclist.component';
 import { AddquestionsComponent } from './addquestions/addquestions.component';
 import { AddanswersComponent } from './addanswers/addanswers.component';
-import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommentlistComponent } from './commentlist/commentlist.component';
 import { AddcommentsComponent } from './addcomments/addcomments.component';
 import { SignupComponent } from './signup/signup.component';
-import {MatIconModule} from '@angular/material/icon'; 
 
 @NgModule({
   declarations: [
@@ -50,8 +50,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatDialogModule,
     ReactiveFormsModule,
     MatCardModule,
-    NavbarModule, 
-    WavesModule, 
+    NavbarModule,
+    WavesModule,
     ButtonsModule,
     MatSnackBarModule,
     MatIconModule,

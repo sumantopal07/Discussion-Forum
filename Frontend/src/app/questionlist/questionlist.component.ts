@@ -1,14 +1,7 @@
-/* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable no-useless-constructor */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-empty-function */
 import { Component, Input, OnInit } from '@angular/core';
-import { SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Question } from '../model/question';
 import { QuestionService } from '../question.service';
-import { AnswerlistComponent } from '../answerlist/answerlist.component';
 import { SearchQueryPageComponent } from '../search-query-page/search-query-page.component';
 import { AddquestionsComponent } from '../addquestions/addquestions.component';
 
@@ -38,9 +31,11 @@ export class QuestionlistComponent implements OnInit {
 
   @Input('qlen1') qlen1:any;
 
-  constructor(private questionService: QuestionService, private squery : SearchQueryPageComponent, private box: MatDialog) {
-    
-   }
+  constructor(private questionService: QuestionService,
+    private squery : SearchQueryPageComponent,
+    private box: MatDialog) {
+
+  }
 
   ngOnInit(): void {
     this.toogleques = true;
@@ -58,7 +53,7 @@ export class QuestionlistComponent implements OnInit {
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     this.seachQueList = this.temp;
     this.toogleques = false;
   }
@@ -72,7 +67,6 @@ export class QuestionlistComponent implements OnInit {
   }
 
   showsearchQues() {
-    console.log(this.temp);
     this.toogleques = true;
   }
 }

@@ -1,6 +1,4 @@
-/* eslint-disable no-useless-constructor */
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable no-empty-function */
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -73,27 +71,26 @@ export class AddquestionsComponent implements OnInit {
     if (!this.topic.value) {
       this.err1 = 'Please choose a topic';
       return;
-    }this.err1='';
+    } this.err1 = '';
 
     if (!this.Keywords.value) {
       this.err2 = 'This field cannot be empty';
       return;
-    }this.err2='';
-    
+    } this.err2 = '';
+
     if (!this.quesTitle.value) {
       this.err3 = 'This field cannot be empty';
       return;
-    }this.err3='';
+    } this.err3 = '';
 
     if (!this.quesDesc.value) {
       this.err4 = 'This field cannot be empty';
       return;
-    }this.err4='';
+    } this.err4 = '';
 
     this.snackBar.open('Adding. Add Question box will close automatically.', '', {
       duration: 5000,
     });
-    console.log(quesObject);
     this.questionService.postQuestion(quesObject).subscribe(() => {
       this.dialogRef.close();
     });

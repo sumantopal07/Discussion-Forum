@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

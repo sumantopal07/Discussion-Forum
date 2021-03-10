@@ -1,13 +1,6 @@
-/* eslint-disable max-len */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-useless-constructor */
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-empty-function */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
-import { QuestionlistComponent } from '../questionlist/questionlist.component';
 import { QuestionService } from '../question.service';
 @Component({
   selector: 'app-search-query-page',
@@ -40,9 +33,8 @@ export class SearchQueryPageComponent implements OnInit {
   }
 
   quesSearch() {
-    this.temp=[];
-    console.log(this.Qkeywords);
-    this.questionService.oldkey=this.Qkeywords;
+    this.temp = [];
+    this.questionService.oldkey = this.Qkeywords;
     this.questionService.Searching(this.Qkeywords).subscribe((data) => {
       for (let i = 0; i < data.length; i += 1) {
         this.temp.push({
@@ -52,10 +44,8 @@ export class SearchQueryPageComponent implements OnInit {
           quphoto: data[i].user.photo,
           quser: data[i].user.username,
         });
-        
       }
       this.qlen1 = this.temp.length;
-      console.log(this.qlen1);
     });
   }
 

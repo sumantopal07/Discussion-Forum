@@ -1,45 +1,46 @@
-<button class="b" style="position: absolute; margin-top: -5%; margin-left: 23%" (click)="showsearchQues()">My Questions</button>
+<button class="b" style="position: absolute; margin-top: -5%; margin-left: 23%" (click)="showsearchQues()">My
+    Questions</button>
 <div *ngIf="toogleques">
-<div *ngIf='qlen2'>
-<div *ngFor="let question of questionlist; index as i">
-    <mat-card class="example-card">
-        <mat-card-header>
-            <div mat-card-avatar style="background-image: url({{question.quphoto}});
+    <div *ngIf='qlen2'>
+        <div *ngFor="let question of questionlist; index as i">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar style="background-image: url({{question.quphoto}});
             background-size: cover;"></div>
-            <mat-card-title>{{question.title}}</mat-card-title>
-            <mat-card-subtitle>{{question.body}} </mat-card-subtitle>
-        </mat-card-header>
+                    <mat-card-title>{{question.title}}</mat-card-title>
+                    <mat-card-subtitle>{{question.body}} </mat-card-subtitle>
+                </mat-card-header>
 
-        <button class="button" (click)="showans(i)">View answers</button>
-        <mat-card-content>
-            <div *ngIf="showVar[i]">
-                <p>
-                <app-answerlist quesId={{question.qid}} [markbutton]=true></app-answerlist>
-                </p>
-            </div>
-        </mat-card-content>
-    </mat-card>
-      
+                <button class="button" (click)="showans(i)">View answers</button>
+                <mat-card-content>
+                    <div *ngIf="showVar[i]">
+                        <p>
+                            <app-answerlist quesId={{question.qid}} [markbutton]=true></app-answerlist>
+                        </p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
     </div>
+
+    <div *ngIf='!qlen2' style="color:var(--ligt);  font-size: 17px; margin-top: 8%; margin-left: 43%;">
+        <span>You have not asked any questions!</span>
+    </div>
+
 </div>
 
-<div *ngIf='!qlen2' style="color:var(--ligt);  font-size: 17px; margin-top: 8%; margin-left: 43%;">
-    <span>You have not asked any questions!</span>
-</div>
-
-</div>
-    
 
 
 
 <div *ngIf="!toogleques">
-        <button class="b" style="margin-left: 43%;" (click)="addQues()">Ask a question</button>
+    <button class="b" style="margin-left: 43%;" (click)="addQues()">Ask a question</button>
     <div *ngFor="let squestion of seachQueList; index as i">
         <mat-card class="example-card">
             <mat-card-header>
                 <div mat-card-avatar style="background-image: url({{squestion.quphoto}});
                 background-size: cover;"></div>
-                <mat-card-title>{{squestion.quser}}</mat-card-title> 
+                <mat-card-title>{{squestion.quser}}</mat-card-title>
                 <mat-card-subtitle>{{squestion.title}}</mat-card-subtitle>
                 <mat-card-subtitle>{{squestion.body}} </mat-card-subtitle>
             </mat-card-header>
@@ -47,7 +48,7 @@
             <mat-card-content>
                 <div *ngIf="showVar[i]">
                     <p>
-                    <app-answerlist quesId={{squestion.qid}} [markbutton]=false></app-answerlist>
+                        <app-answerlist quesId={{squestion.qid}} [markbutton]=false></app-answerlist>
                     </p>
                 </div>
             </mat-card-content>

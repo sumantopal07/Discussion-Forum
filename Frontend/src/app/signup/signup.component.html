@@ -6,7 +6,7 @@
                 <input type="text" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
                 <label style="font-size:small;">Username<br></label>
             </div>
-            <span class='err'>{{err1}}</span>         
+            <span class='err'>{{err1}}</span>
             <div class="user-box">
                 <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
                 <label style="font-size:small;">Password<br></label>
@@ -24,8 +24,9 @@
             <span class='err'>{{err4}}</span>
             <div class="user-box">
                 <label style="font-size:small;">Choose your topic: <br></label><br><br>
-                <select class="c" style="margin-top: -15%; margin-left: 25%;" formControlName="topic" multiple="multiple" id="myMulti">
-                    <option  value="badminton">badminton</option>
+                <select class="c" style="margin-top: -15%; margin-left: 25%;" formControlName="topic"
+                    multiple="multiple" id="myMulti">
+                    <option value="badminton">badminton</option>
                     <option value="algorithm">algorithm</option>
                     <option value="technology">technology</option>
                     <option value="framework">framework</option>

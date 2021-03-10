@@ -1,8 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-empty-function */
-/* eslint-disable no-useless-constructor */
-/* eslint-disable no-unused-vars */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
