@@ -18,3 +18,5 @@
    ```
 7.   Visit <a href="http://localhost:4200/">http://localhost:4200/</a> in your browser </h2> <br>
 
+#### ER DIAGRAM
+![](1.jpeg) 
