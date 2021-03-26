@@ -63,7 +63,7 @@ class AnswerServiceTest {
 		answer.add(new Answer(1,user1,ques1,"hockey is our national game",true));
 		answer.add(new Answer(2,user2,ques2,"white color",true));
 		
-		when(answerRepository.findByQuestionQuesId(ques_id)).thenReturn(answer);
+		when(answerRepository.findByQuestionQuesIdOrderByVotesDesc(ques_id)).thenReturn(answer);
 		
 		assertEquals(answer,answerService.getAnswerByQuesId(ques_id));
 	}

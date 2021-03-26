@@ -24,6 +24,7 @@ public class Answer {
 	@Column(columnDefinition="TEXT")
 	private String answerBody;
 	private boolean correct;
+	private int votes;
 	
 	public Answer(int ansId, User user, Question question, String answerBody, boolean correct) {
 		super();
@@ -66,10 +67,11 @@ public class Answer {
 		this.correct = correct;
 	}
 	
-	@Override
-	public String toString() {
-		return "Answer [ansId=" + ansId + ", user=" + user + ", question=" + question + ", answerBody=" + answerBody
-				+ ", correct=" + correct + "]";
+	public int getVotes() {
+		return votes;
+	}
+	public void setVotes(int votes) {
+		this.votes = votes;
 	}
 	
 	
