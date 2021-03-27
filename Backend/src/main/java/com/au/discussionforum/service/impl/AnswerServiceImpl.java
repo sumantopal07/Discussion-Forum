@@ -14,7 +14,7 @@ public class AnswerServiceImpl implements AnswerService{
 	AnswerRepository answerRepository;
 	
 	public List<Answer> getAnswerByQuesId(int quesId){
-		return answerRepository.findByQuestionQuesIdOrderByVotesDesc(quesId);
+		return answerRepository.findByQuestionQuesId(quesId);
 	}
 
 	public Answer getAnswerByAnswerId(int ansId) {

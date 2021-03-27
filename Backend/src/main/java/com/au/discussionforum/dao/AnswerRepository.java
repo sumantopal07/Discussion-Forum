@@ -10,6 +10,6 @@ import com.au.discussionforum.model.Answer;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer,Long>{
 
-	List<Answer> findByQuestionQuesIdOrderByVotesDesc(int keyword);
+	List<Answer> findByQuestionQuesId(int keyword);
 	Answer findByAnsId(int ansId);
 }
