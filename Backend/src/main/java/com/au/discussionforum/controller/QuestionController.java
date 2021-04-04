@@ -3,10 +3,12 @@ package com.au.discussionforum.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +27,7 @@ import com.au.discussionforum.service.QuestionService;
 import com.au.discussionforum.service.TopicService;
 import com.au.discussionforum.service.UserService;
 import com.au.discussionforum.service.UserTopicService;
+
 
 @RestController
 public class QuestionController {
@@ -87,15 +90,15 @@ public class QuestionController {
 			quesKeywords.setKeyword(key);
 			quesKeywordsService.addQuesKeywords(quesKeywords);
 		}
-		try {
-			List<User> users = userTopicService.getUsersByTopic(topic.getTopicId());
-			for(User u : users) {
-				emailService.sendSimpleMessage(u.getEmail(), "New Question Added", "Someone asked Question related to " + topic.getTopicName()+" visit your profile for answering the question");
-			}
-		}catch(Exception e) {
-			log.error("Failed To Send Email");
-		}
+		int topicId = topic.getTopicId();
+		String topicName =topic.getTopicName();
+		sendEmail(topicId,topicName);
 	} 
+	@Async
+	void sendEmail(int topicId, String topicName){
+		List<User> users = userTopicService.getUsersByTopic(topicId);
+		emailService.sendSimpleMessage(users, "New Question Added", "Someone asked Question related to " + topicName+" visit your profile for answering the question");	
+	}
 	
 	@GetMapping(path = "/api/questions/{uid}")
 	public List<Question> getQuestionsByTopic(@PathVariable("uid") int userId) {

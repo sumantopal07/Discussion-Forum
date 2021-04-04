@@ -21,4 +21,14 @@
 7.   Visit <a href="http://localhost:4200/">http://localhost:4200/</a> in your browser </h2> <br>
 
 #### ER DIAGRAM
-![](1.jpeg) 
+![](a.jpeg) 
+#### LOGIN
+![](1.png)
+#### SIGNUP
+![](2.png)
+#### HOME PAGE
+![](3.png)
+#### Dialog Box
+![](4.png)
+#### Email Service as Notification
+![](5.png) 
