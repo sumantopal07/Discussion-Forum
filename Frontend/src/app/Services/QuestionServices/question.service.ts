@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class QuestionService {
     uid : number;
 
+    page : number;
+
     Squestions=[];
 
     oldkey: string;
@@ -19,10 +21,11 @@ export class QuestionService {
       if (!this.uid) {
         this.router.navigate(['']);
       }
+      this.page=0;
     }
 
     getQuestions() {
-      return this.http.get<any>(`/api/userquestions/${this.uid}`);
+      return this.http.get<any>(`/api/userquestions/${this.uid}/${this.page}`);
     }
 
     Searching = (keywords : string) : Observable<any> => this.http.post<any>('/api/question/keywords', keywords);

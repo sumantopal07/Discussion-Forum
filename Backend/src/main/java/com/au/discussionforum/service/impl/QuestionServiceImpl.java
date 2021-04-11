@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.au.discussionforum.dao.QuestionRepository;
@@ -46,8 +49,9 @@ public class QuestionServiceImpl implements QuestionService{
 		
 	}
 
-	public List<Question> getQuestionByUser(int userId) {
-		return questionRepository.findByUserUserId(userId);
+	public Page<Question> getQuestionByUser(int userId,int page) {
+		Pageable pageable = PageRequest.of(page,5);
+		return questionRepository.findByUserUserId(userId,pageable);
 	}
 	
 	public Question addQuestion(Question q) {

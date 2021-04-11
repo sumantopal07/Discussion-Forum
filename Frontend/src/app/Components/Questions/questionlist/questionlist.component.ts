@@ -18,6 +18,10 @@ export class QuestionlistComponent implements OnInit {
 
   queId: number;
 
+  page: number;
+
+  totalPages: number;
+
   qlen2: number;
 
   showVar: boolean[] = [];
@@ -35,17 +39,21 @@ export class QuestionlistComponent implements OnInit {
     private box: MatDialog) {
 
   }
+  
 
   ngOnInit(): void {
     this.toogleques = true;
     this.questionService.getQuestions().subscribe((data) => {
-      for (let i = 0; i < data.length; i += 1) {
+      this.page= data.number;
+      this.totalPages= data.totalPages;
+      console.log(data);
+      for (let i = 0; i < data.content.length; i += 1) {
         this.showVar.push(false);
         this.questionlist.push({
-          title: data[i].title,
-          body: data[i].body,
-          qid: data[i].quesId,
-          quphoto: data[i].user.photo,
+          title: data.content[i].title,
+          body: data.content[i].body,
+          qid: data.content[i].quesId,
+          quphoto: data.content[i].user.photo,
         });
         this.qlen2 = this.questionlist.length;
       }
