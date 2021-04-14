@@ -1,7 +1,11 @@
 package com.au.discussionforum.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,26 +15,22 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
-	
-    @Column(unique = true)
+
+	@Column(unique = true)
 	private String email;
 	private String password;
-	
-    @Column(unique = true)
+
+	@Column(unique = true)
 	private String username;
 	private String photo;
 
-	public User(int userId, String email, String password, String username, String photo) {
-		super();
-		this.userId = userId;
-		this.email = email;
-		this.password = password;
-		this.username = username;
-		this.photo = photo;
-	}
+	@ElementCollection(fetch = FetchType.EAGER)
+	List<Role> roles;
+
 	
+
 	public User() {
-		
+
 	}
 
 	public int getUserId() {
@@ -78,5 +78,19 @@ public class User {
 		return "User [userid=" + userId + ", email=" + email + ", password=" + password + ", username=" + username
 				+ ", photo=" + photo + "]";
 	}
-	
+
+	/**
+	 * @return the roles
+	 */
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 }

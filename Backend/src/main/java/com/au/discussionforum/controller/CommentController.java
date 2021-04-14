@@ -28,12 +28,12 @@ public class CommentController {
 	@Autowired 
 	private AnswerService answerService;
 	
-	@GetMapping(path = "/api/comment/{ansid}")
+	@GetMapping(path = "/api/restriction/comment/{ansid}")
     public List<Comment> getComments(@PathVariable("ansid") int ansId) {
 		return commentService.getCommentsByAnswerId(ansId);
     }
 	
-	@PostMapping(path = "/api/addcomment")
+	@PostMapping(path = "/api/restriction/addcomment")
 	public Boolean addComment(@RequestBody CommentDTO commentDTO) {
 		Comment comment = new Comment();
 		

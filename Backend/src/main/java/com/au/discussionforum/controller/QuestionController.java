@@ -56,7 +56,7 @@ public class QuestionController {
 	static Logger log = LogManager.getLogger(QuestionController.class);
 
 	
-	@PostMapping(path = "/api/question/keywords")
+	@PostMapping(path = "/api/restriction/question/keywords")
     public List<Question> getQuestionsByKeyword(@RequestBody String quesKeywords) {
 		List<String> keywords = Arrays.asList(quesKeywords.split(","));
 		List<Question> questionList = quesKeywordsService.getQuestionByKeyword(keywords);
@@ -65,13 +65,13 @@ public class QuestionController {
     }
 	//Implementing pagination
 	// per page = 5
-	@GetMapping(path = "/api/userquestions/{uid}/{page}")
+	@GetMapping(path = "/api/restriction/userquestions/{uid}/{page}")
 	public Page<Question> getQuestionsByUser(@PathVariable("uid") int userId,@PathVariable("page") int page) {
 		Page<Question> result = questionService.getQuestionByUser(userId,page);
 		return result;
 	}
 	
-	@PostMapping(path = "/api/addquestion")
+	@PostMapping(path = "/api/restriction/addquestion")
 	public void addQuestion(@RequestBody QuestionDTO questionDTO) {
 		Question question = new Question();
 		User user = userService.getUserByUserId(questionDTO.getUserId());
@@ -104,7 +104,7 @@ public class QuestionController {
 		emailService.sendSimpleMessage(question,users, "New Question Added", "Someone asked Question related to " + topicName+" visit your profile for answering the question");	
 	}
 	
-	@GetMapping(path = "/api/questions/{uid}")
+	@GetMapping(path = "/api/restriction/questions/{uid}")
 	public List<Question> getQuestionsByTopic(@PathVariable("uid") int userId) {
 		List <UserTopic> topics=userTopicService.getTopicByUser(userId);
 		List <Question> res=new ArrayList<>();

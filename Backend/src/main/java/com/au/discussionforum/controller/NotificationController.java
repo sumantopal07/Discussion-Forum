@@ -29,14 +29,14 @@ public class NotificationController {
 	@Autowired
 	private QuestionNotificationService notificationService;
 	
-	@GetMapping(path = "/api/notifications/{uid}")
+	@GetMapping(path = "/api/restriction/notifications/{uid}")
 	public List<Question> getQuestionsByUser(@PathVariable("uid") int userId) {
 		List<Question> res=new ArrayList<>();
 		res=notificationService.getQuestions(userId);
 		return res;
 	}
 	
-	@PostMapping(path = "/api/notificationsmarkall")
+	@PostMapping(path = "/api/restriction/notificationsmarkall")
 	public List<QuestionNotification> markRead(@RequestBody Integer userId) {
 		
 		return notificationService.markRead(userId);

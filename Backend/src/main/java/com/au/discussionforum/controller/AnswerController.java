@@ -35,13 +35,13 @@ public class AnswerController {
 	@Autowired
 	private UserAnswerService userAnswerService;
 
-	@GetMapping(path = "/api/answer/{id}")
+	@GetMapping(path = "/api/restriction/answer/{id}")
 	public List<Answer> getAnswers(@PathVariable("id") int quesId) {
 
 		return answerService.getAnswerByQuesId(quesId);
 	}
 
-	@PostMapping(path = "/api/answer/markcorrect")
+	@PostMapping(path = "/api/restriction/answer/markcorrect")
 	public void setCorrectAnswer(@RequestBody int ansId) {
 		Answer answer = answerService.getAnswerByAnswerId(ansId);
 		answer.setCorrect(true);
@@ -51,7 +51,7 @@ public class AnswerController {
 		answerService.setCorrectAnswer(answer);
 	}
 
-	@PostMapping(path = "/api/addanswers")
+	@PostMapping(path = "/api/restriction/addanswers")
 	public Boolean addAnswers(@RequestBody AnswerDTO answerDTO) {
 		Answer answer = new Answer();
 
@@ -66,7 +66,7 @@ public class AnswerController {
 		return answerService.addAnswer(answer);
 	}
 
-	@PostMapping(path = "/api/upvoteanswer")
+	@PostMapping(path = "/api/restriction/upvoteanswer")
 	public int upvoteAnswer(@RequestBody UserAnswerDTO userAnswerDTO) {
 		/*
 		 * userId
