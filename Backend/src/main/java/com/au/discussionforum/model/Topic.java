@@ -1,5 +1,6 @@
 package com.au.discussionforum.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +12,11 @@ public class Topic {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int topicId;
 	
+	@Column(unique = true)
 	private String topicName;
 
-	public Topic(int topicId, String topicName) {
+	public Topic(String topicName) {
 		super();
-		this.topicId = topicId;
 		this.topicName = topicName;
 	}
 	
@@ -24,7 +25,7 @@ public class Topic {
 	}
 
 	public int getTopicId() {
-		return topicId;
+		return this.topicId;
 	}
 
 	public void setTopicId(int topicId) {
@@ -32,7 +33,7 @@ public class Topic {
 	}
 
 	public String getTopicName() {
-		return topicName;
+		return this.topicName;
 	}
 
 	public void setTopicName(String topicName) {
