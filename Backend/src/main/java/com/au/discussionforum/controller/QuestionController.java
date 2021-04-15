@@ -8,19 +8,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.au.discussionforum.dao.QuestionNotificationRepository;
 import com.au.discussionforum.model.QuesKeywords;
 import com.au.discussionforum.model.Question;
-import com.au.discussionforum.model.QuestionNotification;
 import com.au.discussionforum.model.Topic;
 import com.au.discussionforum.model.User;
 import com.au.discussionforum.model.UserTopic;
@@ -57,22 +54,22 @@ public class QuestionController {
 
 	
 	@PostMapping(path = "/api/restriction/question/keywords")
-    public List<Question> getQuestionsByKeyword(@RequestBody String quesKeywords) {
+    public ResponseEntity<List<Question>> getQuestionsByKeyword(@RequestBody String quesKeywords) {
 		List<String> keywords = Arrays.asList(quesKeywords.split(","));
 		List<Question> questionList = quesKeywordsService.getQuestionByKeyword(keywords);
 		questionList = questionService.getSortedQuestionList(questionList);
-    	return questionList;
+    	return new ResponseEntity<>(questionList,HttpStatus.OK);
     }
 	//Implementing pagination
 	// per page = 5
 	@GetMapping(path = "/api/restriction/userquestions/{uid}/{page}")
-	public Page<Question> getQuestionsByUser(@PathVariable("uid") int userId,@PathVariable("page") int page) {
+	public ResponseEntity<Page<Question>> getQuestionsByUser(@PathVariable("uid") int userId,@PathVariable("page") int page) {
 		Page<Question> result = questionService.getQuestionByUser(userId,page);
-		return result;
+		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 	
 	@PostMapping(path = "/api/restriction/addquestion")
-	public void addQuestion(@RequestBody QuestionDTO questionDTO) {
+	public ResponseEntity<String> addQuestion(@RequestBody QuestionDTO questionDTO) {
 		Question question = new Question();
 		User user = userService.getUserByUserId(questionDTO.getUserId());
 		Topic topic = topicService.getTopicByName(questionDTO.getTopicName());
@@ -96,6 +93,8 @@ public class QuestionController {
 		int topicId = topic.getTopicId();
 		String topicName =topic.getTopicName();
 		sendEmail(topicId,topicName,question);
+		return new ResponseEntity<>("question added successfully",HttpStatus.OK);
+				
 	} 
 	
 	
@@ -105,13 +104,14 @@ public class QuestionController {
 	}
 	
 	@GetMapping(path = "/api/restriction/questions/{uid}")
-	public List<Question> getQuestionsByTopic(@PathVariable("uid") int userId) {
+	public ResponseEntity<List<Question>> getQuestionsByTopic(@PathVariable("uid") int userId) {
 		List <UserTopic> topics=userTopicService.getTopicByUser(userId);
 		List <Question> res=new ArrayList<>();
 		for(UserTopic topic: topics) {
 			res.addAll(questionService.getQuestionByTopic(topic.getTopic().getTopicId()));
 		}
 		
-		return res;
+		
+		return new ResponseEntity<>(res,HttpStatus.OK);
 	}
 }

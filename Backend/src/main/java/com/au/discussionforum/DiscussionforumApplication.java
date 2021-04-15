@@ -1,9 +1,5 @@
 package com.au.discussionforum;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +9,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.au.discussionforum.dao.TopicRepository;
 import com.au.discussionforum.model.Topic;
+
+
 
 @SpringBootApplication
 @EnableAsync

@@ -3,6 +3,8 @@ package com.au.discussionforum.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,23 +38,23 @@ public class AnswerController {
 	private UserAnswerService userAnswerService;
 
 	@GetMapping(path = "/api/restriction/answer/{id}")
-	public List<Answer> getAnswers(@PathVariable("id") int quesId) {
-
-		return answerService.getAnswerByQuesId(quesId);
+	public ResponseEntity<List<Answer>> getAnswers(@PathVariable("id") int quesId) {
+		return new ResponseEntity<>(answerService.getAnswerByQuesId(quesId),HttpStatus.OK);
 	}
 
 	@PostMapping(path = "/api/restriction/answer/markcorrect")
-	public void setCorrectAnswer(@RequestBody int ansId) {
+	public ResponseEntity<String>  setCorrectAnswer(@RequestBody int ansId) {
 		Answer answer = answerService.getAnswerByAnswerId(ansId);
 		answer.setCorrect(true);
 		Question question = answer.getQuestion();
 		question.setMarked(true);
 		questionService.addQuestion(question);
 		answerService.setCorrectAnswer(answer);
+		return new ResponseEntity<>("Answer Added Successfully",HttpStatus.OK);
 	}
 
 	@PostMapping(path = "/api/restriction/addanswers")
-	public Boolean addAnswers(@RequestBody AnswerDTO answerDTO) {
+	public ResponseEntity<Boolean>  addAnswers(@RequestBody AnswerDTO answerDTO) {
 		Answer answer = new Answer();
 
 		User user = userService.getUserByUserId(answerDTO.getUserId());
@@ -63,11 +65,11 @@ public class AnswerController {
 		answer.setCorrect(false);
 		answer.setAnswerBody(answerDTO.getAnswerBody());
 		answer.setVotes(0);
-		return answerService.addAnswer(answer);
+		return new ResponseEntity<>(answerService.addAnswer(answer),HttpStatus.OK);
 	}
 
 	@PostMapping(path = "/api/restriction/upvoteanswer")
-	public int upvoteAnswer(@RequestBody UserAnswerDTO userAnswerDTO) {
+	public ResponseEntity<String>  upvoteAnswer(@RequestBody UserAnswerDTO userAnswerDTO) {
 		/*
 		 * userId
 		 * ansId
@@ -80,15 +82,15 @@ public class AnswerController {
 		Answer answer = answerService.getAnswerByAnswerId(ansId);
 		User user     = userService.getUserByUserId(userId);
 		if(user == null || answer ==null){
-			return -1; //user or answer does'nt exist
+			return new ResponseEntity<>("user or answer does'nt exist",HttpStatus.NOT_ACCEPTABLE); //user or answer does'nt exist
 			
 		}
 		
 		if(answer.getUser().getUserId() == userId ){
-			return 0; //user can't upvote/downvote his/her own answer
+			return new ResponseEntity<>("user can't upvote/downvote his/her own answer",HttpStatus.NOT_ACCEPTABLE); //user can't upvote/downvote his/her own answer
 		}
 		if(userAnswerService.check(user, answer)){
-			return 1; //user can't upvote/downvote an answer more than once
+			return new ResponseEntity<>("user can't upvote/downvote an answer more than once",HttpStatus.NOT_ACCEPTABLE); //user can't upvote/downvote an answer more than once
 		}
 		UserAnswer userAnswer = new UserAnswer();
 		userAnswer.setUser(user);
@@ -98,6 +100,6 @@ public class AnswerController {
 		userAnswerService.addVote(userAnswer);
 		answer.setVotes(voteType ? answer.getVotes()+1 : answer.getVotes()-1  );
 		answerService.setCorrectAnswer(answer);
-		return 2; //success
+		return new ResponseEntity<>("sucess",HttpStatus.OK); //success
     }
 }

@@ -3,6 +3,8 @@ package com.au.discussionforum.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +31,12 @@ public class CommentController {
 	private AnswerService answerService;
 	
 	@GetMapping(path = "/api/restriction/comment/{ansid}")
-    public List<Comment> getComments(@PathVariable("ansid") int ansId) {
-		return commentService.getCommentsByAnswerId(ansId);
+    public ResponseEntity<List<Comment>> getComments(@PathVariable("ansid") int ansId) {
+		return new ResponseEntity<>(commentService.getCommentsByAnswerId(ansId),HttpStatus.OK);
     }
 	
 	@PostMapping(path = "/api/restriction/addcomment")
-	public Boolean addComment(@RequestBody CommentDTO commentDTO) {
+	public ResponseEntity<Boolean> addComment(@RequestBody CommentDTO commentDTO) {
 		Comment comment = new Comment();
 		
 		User user = userService.getUserByUserId(commentDTO.getUserId());
@@ -44,7 +46,7 @@ public class CommentController {
 		comment.setCommentBody(commentDTO.getCommentBody());
 		comment.setAnswer(answer);
 		
-		return commentService.addComment(comment);
-    }
+		return new ResponseEntity<>(commentService.addComment(comment),HttpStatus.OK);
+	}
 
 }

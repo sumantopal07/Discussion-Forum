@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,25 +46,25 @@ public class UserController {
 	private QuestionNotificationService notificationService;
 	
 	@PostMapping(path = "/api/allowed/login")
-    public LoginResponseDTO checkUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<LoginResponseDTO> checkUser(@RequestBody UserDTO userDTO) {
 			
     	User user = userService.getUserByUsername(userDTO.getUsername());
     	if(user==null) {
-    		return null;
+    		return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     	}else {
     		if(BCrypt.checkpw(userDTO.getPassword(), user.getPassword())) {
     			LoginResponseDTO l = new LoginResponseDTO();
     			l.setUser(user);
     			l.setAccessToken(jwtTokenProviderService.createToken(user.getUsername(), user.getRoles()));
-    			return l;	
+    			return new ResponseEntity<>(l,HttpStatus.OK);	
     		}
     	}
        
-        return null;
+    	return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 	
 	@PostMapping(path = "/api/allowed/signup")
-	public int addUser(@RequestBody UserSignupDTO userSignupDTO) {
+	public ResponseEntity<String> addUser(@RequestBody UserSignupDTO userSignupDTO) {
 		User user = new User();
 		user.setEmail(userSignupDTO.getSignupEmail());
 		
@@ -72,11 +74,11 @@ public class UserController {
 		user.setUsername(userSignupDTO.getSignupUsername());
 		
 		if(userService.getUserByUsername(userSignupDTO.getSignupUsername()) != null) {
-			return 1;
+			return new ResponseEntity<>("Username already exists",HttpStatus.NOT_FOUND);
 		}
 		
 		if(userService.getUserByEmail(userSignupDTO.getSignupEmail()) != null) {
-			return 2;
+			return new ResponseEntity<>("email already exists",HttpStatus.NOT_FOUND);
 		}
 		
 		user = userService.addUser(user);
@@ -90,7 +92,7 @@ public class UserController {
 			userTopicService.addUserTopic(userTopic);
 		}
 		
-		return 0;
+		return new ResponseEntity<>("account created successfully",HttpStatus.OK);
 
 	}
 }
