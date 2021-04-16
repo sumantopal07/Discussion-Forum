@@ -1,4 +1,4 @@
-package com.au.discussionforum;
+package com.au.discussionforum.controller;
 
 import static org.junit.Assert.assertEquals;
 

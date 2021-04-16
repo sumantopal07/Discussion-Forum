@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -50,8 +50,8 @@ public class QuestionController {
 	@Autowired
 	EmailService emailService;
 	
-	static Logger log = LogManager.getLogger(QuestionController.class);
-
+	
+	static Logger log = LoggerFactory.getLogger(QuestionController.class);
 	
 	@PostMapping(path = "/api/restriction/question/keywords")
     public ResponseEntity<List<Question>> getQuestionsByKeyword(@RequestBody String quesKeywords) {
@@ -70,6 +70,7 @@ public class QuestionController {
 	
 	@PostMapping(path = "/api/restriction/addquestion")
 	public ResponseEntity<String> addQuestion(@RequestBody QuestionDTO questionDTO) {
+		log.info("[ENTER] [QUESTIONCONTROLLER] addquestion");
 		Question question = new Question();
 		User user = userService.getUserByUserId(questionDTO.getUserId());
 		Topic topic = topicService.getTopicByName(questionDTO.getTopicName());
@@ -93,6 +94,7 @@ public class QuestionController {
 		int topicId = topic.getTopicId();
 		String topicName =topic.getTopicName();
 		sendEmail(topicId,topicName,question);
+		log.info("[EXIT] [QUESTIONCONTROLLER] addquestion");
 		return new ResponseEntity<>("question added successfully",HttpStatus.OK);
 				
 	} 

@@ -1,4 +1,4 @@
-package com.au.discussionforum;
+package com.au.discussionforum.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 

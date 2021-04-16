@@ -2,6 +2,8 @@ package com.au.discussionforum.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.au.discussionforum.DiscussionforumApplication;
 import com.au.discussionforum.model.Answer;
 import com.au.discussionforum.model.Question;
 import com.au.discussionforum.model.User;
@@ -39,8 +42,12 @@ public class AnswerController {
 
 	@GetMapping(path = "/api/restriction/answer/{id}")
 	public ResponseEntity<List<Answer>> getAnswers(@PathVariable("id") int quesId) {
+		
 		return new ResponseEntity<>(answerService.getAnswerByQuesId(quesId),HttpStatus.OK);
 	}
+	
+	
+
 
 	@PostMapping(path = "/api/restriction/answer/markcorrect")
 	public ResponseEntity<String>  setCorrectAnswer(@RequestBody int ansId) {

@@ -2,6 +2,8 @@ package com.au.discussionforum;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +20,7 @@ public class DiscussionforumApplication {
 
 	@Autowired
 	private TopicRepository topicRepository;
+	
 	
 	@PostConstruct
 	public void initTopics() {

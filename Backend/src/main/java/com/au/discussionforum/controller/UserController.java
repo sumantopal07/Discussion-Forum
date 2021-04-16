@@ -3,6 +3,8 @@ package com.au.discussionforum.controller;
 import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,8 +47,11 @@ public class UserController {
 	@Autowired
 	private QuestionNotificationService notificationService;
 	
+	static Logger log = LoggerFactory.getLogger(UserController.class);
+	
 	@PostMapping(path = "/api/allowed/login")
     public ResponseEntity<LoginResponseDTO> checkUser(@RequestBody UserDTO userDTO) {
+		log.info("entered login");
 			
     	User user = userService.getUserByUsername(userDTO.getUsername());
     	if(user==null) {
@@ -65,6 +70,7 @@ public class UserController {
 	
 	@PostMapping(path = "/api/allowed/signup")
 	public ResponseEntity<String> addUser(@RequestBody UserSignupDTO userSignupDTO) {
+		log.info("entered signup");
 		User user = new User();
 		user.setEmail(userSignupDTO.getSignupEmail());
 		

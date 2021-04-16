@@ -2,6 +2,9 @@
 package com.au.discussionforum.security;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,14 +24,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
     private IJwtTokenProviderService jwtTokenProviderService;
 
     public WebSecurityConfig(IJwtTokenProviderService jwtTokenProviderService) {
+    	log.info("[ENTER] [WebSecurity] constructor"+jwtTokenProviderService.hashCode());
         this.jwtTokenProviderService = jwtTokenProviderService;
+        log.info("[EXIT] [WebSecurity] constructor"+jwtTokenProviderService.hashCode());
     }
 
+    static Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	log.info("[ENTER] [WebSecurity] configure http security"+http);
 
         http.csrf().disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -51,10 +59,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Apply JWT
         http.apply(new JwtTokenFilterConfigurer(jwtTokenProviderService));
+        
+        log.info("[EXIT] [WebSecurity] configure http security"+http);
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+    	log.info("[ENTER] [WebSecurity] configure(WebSecurity web)"+web);
         // Allow swagger to be accessed without authentication
         web.ignoring().antMatchers("/v2/api-docs")//
                 .antMatchers("/swagger-resources/**")//
@@ -67,16 +78,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .ignoring()
                 .antMatchers("/h2-console/**/**");
+        log.info("[EXIT] [WebSecurity] configure(WebSecurity web)");
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+    	log.info("[ENTER] [WebSecurity] PasswordEncoder");
         return new BCryptPasswordEncoder(12);
     }
 
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
+    	log.info("[ENTER] [WebSecurity] AuthenticationManager");
         return authenticationManager();
     }
 

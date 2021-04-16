@@ -1,4 +1,4 @@
-package com.au.discussionforum;
+package com.au.discussionforum.services;
 
 import org.junit.jupiter.api.Test;
 
